@@ -12,7 +12,7 @@ public class ScoreTest {
 	private ScoresBuggedImpl scoreBuggedImpl;
 	
 	@BeforeClass
-	public void init(){
+	public void initializeValues(){
 		scoreBuggedImpl = new ScoresBuggedImpl();
 	}
 	
