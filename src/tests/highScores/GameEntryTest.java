@@ -9,19 +9,17 @@ public class GameEntryTest {
 	
 	
 	@Test
-	public void testNotEmptyName(){
+	public void testNameSizeEqualZero(){
 		GameEntry gameEntry = new GameEntry("", 100);
 		
-		Assert.assertFalse(gameEntry.getName().isEmpty());
+		Assert.assertFalse(gameEntry.getName().length() > 0);
 	}
 	
 	@Test
 	public void testGreatName(){
 		GameEntry gameEntry = new GameEntry("user56789123456789101", 100);
 		
-		Integer length = gameEntry.getName().length();
-		
-		Assert.assertTrue(length < 20);
+		Assert.assertTrue(gameEntry.getName().length() < 20);
 	}
 	
 	@Test
