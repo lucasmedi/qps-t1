@@ -1,17 +1,17 @@
-package tests.services;
+package tests.highScores;
+
+import highScores.GameEntry;
+import highScores.ScoresBuggedImpl;
 
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
-
-import services.ScoresBuggedImpl;
-import classes.GameEntry;
 
 public class ScoreTest {
 	
 	private ScoresBuggedImpl scoreBuggedImpl;
 	
-	@BeforeClass
+	@Before
 	public void initializeValues(){
 		scoreBuggedImpl = new ScoresBuggedImpl();
 	}

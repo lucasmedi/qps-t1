@@ -1,9 +1,9 @@
-package tests.classes;
+package tests.highScores;
+
+import highScores.GameEntry;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import classes.GameEntry;
 
 public class GameEntryTest {
 	
