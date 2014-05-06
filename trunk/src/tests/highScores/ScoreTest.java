@@ -33,15 +33,7 @@ public class ScoreTest {
 		 
 	@Test
 	public void testCapacity(){
-		GameEntry gameEntry1 = new GameEntry("user1", 400);
-		GameEntry gameEntry2 = new GameEntry("user2", 200);
-		GameEntry gameEntry3 = new GameEntry("user3", 500);
-		
-		scoreBuggedImpl.add(gameEntry1);
-		scoreBuggedImpl.add(gameEntry2);
-		scoreBuggedImpl.add(gameEntry3);
-		
-		int numElements = 2;
+		int numElements = 5;
 		
 		Assert.assertEquals(numElements, scoreBuggedImpl.getCapacity());
 	}
@@ -130,6 +122,68 @@ public class ScoreTest {
 		String scores = scoreBuggedImpl.toString();
 		
 		Assert.assertFalse(scores.contains("user6"));
+	}
+	
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void testRemoveNegativeIndex(){
+		//[(John, 10), (Carol, 5), (Dan, 3), (Giovanni, 2), (Lucas, 1)]
+		GameEntry gameEntry1 = new GameEntry("John", 10);
+		GameEntry gameEntry2 = new GameEntry("Carol", 5);
+		GameEntry gameEntry3 = new GameEntry("Dan", 3);
+		GameEntry gameEntry4 = new GameEntry("Giovanni", 2);
+		GameEntry gameEntry5 = new GameEntry("Lucas", 1);
+		
+		scoreBuggedImpl.add(gameEntry1);
+		scoreBuggedImpl.add(gameEntry2);
+		scoreBuggedImpl.add(gameEntry3);
+		scoreBuggedImpl.add(gameEntry4);
+		scoreBuggedImpl.add(gameEntry5);
+		
+		int index = -1;
+		
+		scoreBuggedImpl.remove(index);
+	}
+	
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void testRemoveGreaterThanListIndex(){
+		//[(John, 10), (Carol, 5), (Dan, 3), (Giovanni, 2), (Lucas, 1)]
+		GameEntry gameEntry1 = new GameEntry("John", 10);
+		GameEntry gameEntry2 = new GameEntry("Carol", 5);
+		GameEntry gameEntry3 = new GameEntry("Dan", 3);
+		GameEntry gameEntry4 = new GameEntry("Giovanni", 2);
+		GameEntry gameEntry5 = new GameEntry("Lucas", 1);
+		
+		scoreBuggedImpl.add(gameEntry1);
+		scoreBuggedImpl.add(gameEntry2);
+		scoreBuggedImpl.add(gameEntry3);
+		scoreBuggedImpl.add(gameEntry4);
+		scoreBuggedImpl.add(gameEntry5);
+		
+		int index = 20;
+		
+		scoreBuggedImpl.remove(index);
+	}
+	
+	@Test
+	public void testRemove(){
+		//[(John, 10), (Carol, 5), (Dan, 3), (Giovanni, 2), (Lucas, 1)]
+		GameEntry gameEntry1 = new GameEntry("John", 10);
+		GameEntry gameEntry2 = new GameEntry("Carol", 5);
+		GameEntry gameEntry3 = new GameEntry("Dan", 3);
+		GameEntry gameEntry4 = new GameEntry("Giovanni", 2);
+		GameEntry gameEntry5 = new GameEntry("Lucas", 1);
+		
+		scoreBuggedImpl.add(gameEntry1);
+		scoreBuggedImpl.add(gameEntry2);
+		scoreBuggedImpl.add(gameEntry3);
+		scoreBuggedImpl.add(gameEntry4);
+		scoreBuggedImpl.add(gameEntry5);
+		
+		int index = 4;
+		
+		GameEntry gameEntry = scoreBuggedImpl.remove(index);
+		
+		Assert.assertTrue(gameEntry.getName().equalsIgnoreCase(gameEntry5.getName()));
 	}
 	
 }

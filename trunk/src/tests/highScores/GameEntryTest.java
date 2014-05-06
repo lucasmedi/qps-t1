@@ -8,11 +8,12 @@ import org.junit.Test;
 public class GameEntryTest {
 	
 	
+	//Test Name
 	@Test
 	public void testNameSizeEqualZero(){
 		GameEntry gameEntry = new GameEntry("", 100);
 		
-		Assert.assertFalse(gameEntry.getName().length() > 0);
+		Assert.assertTrue(gameEntry.getName().length() > 0);
 	}
 	
 	@Test
@@ -28,9 +29,10 @@ public class GameEntryTest {
 		
 		Integer length = gameEntry.getName().length();
 		
-		Assert.assertTrue(length < 20);
+		Assert.assertTrue(length > 0 && length < 20);
 	}
 	
+	//Test Score
 	@Test
 	public void testMaxScore(){
 		GameEntry gameEntry = new GameEntry("user1", 1001);
@@ -50,6 +52,22 @@ public class GameEntryTest {
 		GameEntry gameEntry = new GameEntry("user1", 10);
  
 		Assert.assertTrue(gameEntry.getScore() > 0 && gameEntry.getScore() <= 1000);
+	}
+	
+	@Test
+	public void testGetScore(){
+		int score = 100;
+		GameEntry gameEntry = new GameEntry("User1", score);
+		
+		Assert.assertEquals(score, gameEntry.getScore());
+	}
+	
+	@Test
+	public void testGetName(){
+		String name = "Frodo";
+		GameEntry gameEntry = new GameEntry(name, 10);
+		
+		Assert.assertTrue(name.equalsIgnoreCase(gameEntry.getName()));
 	}
 	
 	@Test
