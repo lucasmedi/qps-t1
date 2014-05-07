@@ -16,6 +16,15 @@ public class ScoreTest {
 		scoreBuggedImpl = new ScoresBuggedImpl();
 	}
 	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Test NumElements
+	 * 
+	 * 
+	 * 
+	 * */
 	@Test
 	public void testNumElementsEmptyList(){
 		int numElements = 0;
@@ -36,6 +45,7 @@ public class ScoreTest {
 		Assert.assertEquals(numElements, scoreBuggedImpl.getNumElements());
 	}
 	
+	
 	@Test
 	public void testNumElementsFullList(){
 		GameEntry gameEntry1 = new GameEntry("John", 10);
@@ -55,6 +65,16 @@ public class ScoreTest {
 		Assert.assertEquals(numElements, scoreBuggedImpl.getNumElements());
 	}
 		 
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Test Capacity
+	 * 
+	 * 
+	 * 
+	 * */
 	@Test
 	public void testCapacity(){
 		int numElements = 5;
@@ -62,6 +82,16 @@ public class ScoreTest {
 		Assert.assertEquals(numElements, scoreBuggedImpl.getCapacity());
 	}
 	
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Test Add
+	 * 
+	 * 
+	 * 
+	 * */
 	@Test 
 	public void testAddScoresEmptyList(){
 		GameEntry gameEntry1 = new GameEntry("João", 5);
@@ -72,6 +102,23 @@ public class ScoreTest {
 	@Test 
 	public void testAddNull(){
 		Assert.assertFalse(scoreBuggedImpl.add(null));
+	}
+	
+	@Test 
+	public void testAddScore(){
+		GameEntry gameEntry1 = new GameEntry("John", 10);
+		GameEntry gameEntry2 = new GameEntry("Carol", 5);
+		GameEntry gameEntry3 = new GameEntry("Giovanni", 11);
+		GameEntry gameEntry4 = new GameEntry("Lucas", 10);
+		
+		scoreBuggedImpl.add(gameEntry1);
+		scoreBuggedImpl.add(gameEntry2);
+		scoreBuggedImpl.add(gameEntry3);
+		scoreBuggedImpl.add(gameEntry4);
+		
+		GameEntry gameEntry5 = new GameEntry("Frodo", 3);
+		
+		Assert.assertTrue(scoreBuggedImpl.add(gameEntry5));
 	}
 
 	@Test 
@@ -112,6 +159,15 @@ public class ScoreTest {
 		Assert.assertTrue(scoreBuggedImpl.add(gameEntry6));
 	}
 	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Test Remove
+	 * 
+	 * 
+	 * 
+	 * */
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void testRemoveNegativeIndex(){
 		//[(John, 10), (Carol, 5), (Dan, 3), (Giovanni, 2), (Lucas, 1)]
@@ -172,8 +228,18 @@ public class ScoreTest {
 		GameEntry gameEntry = scoreBuggedImpl.remove(index);
 		
 		Assert.assertTrue(gameEntry.getName().equalsIgnoreCase(gameEntry5.getName()));
+		
 	}
 	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Test ToString
+	 * 
+	 * 
+	 * 
+	 * */
 	@Test
 	public void testToString(){
 		GameEntry gameEntry1 = new GameEntry("John", 10);

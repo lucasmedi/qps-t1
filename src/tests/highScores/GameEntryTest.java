@@ -8,13 +8,18 @@ import org.junit.Test;
 public class GameEntryTest {
 	
 	
-	//Test Name
-	@Test
+	/*
+	 * 
+	 * 
+	 * 
+	 * Test Name
+	 * 
+	 * 
+	 * 
+	 * */
+	@Test(expected= Exception.class)
 	public void testNameSizeEqualZeroLI(){
 		GameEntry gameEntry = new GameEntry("", 100);
-		
-		//Assert.assertTrue(gameEntry.getName().length() > 0);
-		Assert.fail();
 	}
 	
 	@Test
@@ -33,49 +38,90 @@ public class GameEntryTest {
 	
 	@Test
 	public void testNameLS(){
-		GameEntry gameEntry = new GameEntry("user1", 100);
+		GameEntry gameEntry = new GameEntry("user567891234567891", 1000);
 		
 		Integer length = gameEntry.getName().length();
 		
-		Assert.assertTrue(length > 0 && length < 20);
+		Assert.assertTrue(length > 0 && length <= 20);
 	}
 	
 	@Test
+	public void testNameLimitLS(){
+		GameEntry gameEntry = new GameEntry("user5678912345678912", 1000);
+		
+		Integer length = gameEntry.getName().length();
+		
+		Assert.assertTrue(length > 0 && length <= 20);
+	}
+	
+	@Test(expected = Exception.class)
 	public void testGreatNameLS(){
-		GameEntry gameEntry = new GameEntry("user56789123456789101", 100);
-	
-		Assert.fail();
+		GameEntry gameEntry = new GameEntry("user56789123456789123", 100);
+		
 	}
-	//Test Score
-	@Test
-	public void testNegativeScore(){
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Test Score
+	 * 
+	 * 
+	 * 
+	 * */
+	 
+	@Test(expected= Exception.class)
+	public void testNegativeScoreLI(){
 		GameEntry gameEntry = new GameEntry("user1", -1);
-		
-		Assert.fail();
-	}
-
-	@Test
-	public void testScore(){
-		GameEntry gameEntry = new GameEntry("user1", 10);
- 
-		Assert.assertTrue(gameEntry.getScore() > 0 && gameEntry.getScore() <= 1000);
 	}
 	
 	@Test
-	public void testMaxScore(){
-		GameEntry gameEntry = new GameEntry("user1", 1001);
-		
-		Assert.assertTrue(gameEntry.getScore() <= 1000);
-	}
-	
-	@Test
-	public void testGetScore(){
-		int score = 100;
+	public void testGetScoreZeroLI(){
+		int score = 0;
 		GameEntry gameEntry = new GameEntry("User1", score);
 		
 		Assert.assertEquals(score, gameEntry.getScore());
 	}
 	
+	@Test
+	public void testScoreLI(){
+		int score = 1;
+		GameEntry gameEntry = new GameEntry("User1", score);
+ 
+		Assert.assertTrue(gameEntry.getScore() > 0 && gameEntry.getScore() <= 1000);
+	}
+
+	@Test
+	public void testScoreLS(){
+		int score = 999;
+		GameEntry gameEntry = new GameEntry("user1", 999);
+		
+		Assert.assertTrue(gameEntry.getScore() <= 1000);
+	}
+	
+	@Test
+	public void testMaxScoreLS(){
+		int score = 999;
+		GameEntry gameEntry = new GameEntry("user1", 1000);
+		
+		Assert.assertTrue(gameEntry.getScore() <= 1000);
+	}
+	
+	@Test(expected= Exception.class)
+	public void testGreaterThanMaxScoreLS(){
+		GameEntry gameEntry = new GameEntry("user1", 1001);
+	}
+	
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Other Tests
+	 * 
+	 * 
+	 * 
+	 * */
 	@Test
 	public void testGetName(){
 		String name = "Frodo";
@@ -86,10 +132,10 @@ public class GameEntryTest {
 	
 	@Test
 	public void testToString(){
-		GameEntry gameEntry = new GameEntry("user1", 100);
-		String result = "(user1, 100)";
+		GameEntry gameEntry = new GameEntry("Nome1", 3);
+		String resultExpected = "(Nome1, 3)";
 		
-		Assert.assertEquals(gameEntry.toString(), result);
+		Assert.assertEquals(gameEntry.toString(), resultExpected);
 	}
 
 }
