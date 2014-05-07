@@ -18,7 +18,7 @@ public class ScoresBuggedImpl implements Scores {
 	public String toString() {
 		String s = "[";
 		for (int i = 0; i < numEntries; i++) {
-			if (i > 1)
+			if (i >= 1)
 				s += ", "; // separate entries by commas
 			s += entries[i];
 		}

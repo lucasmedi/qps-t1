@@ -244,13 +244,13 @@ public class ScoreTest {
 	public void testToString() throws Exception{
 		GameEntry gameEntry1 = new GameEntry("John", 10);
 		GameEntry gameEntry2 = new GameEntry("Carol", 5);
-		
+				
 		scoreBuggedImpl.add(gameEntry1);
 		scoreBuggedImpl.add(gameEntry2);
 	
 		String list = "["+gameEntry1.toString()+", " + gameEntry2.toString()+"]";
 		
-		Assert.assertTrue(list.equalsIgnoreCase(scoreBuggedImpl.toString()));
+		Assert.assertEquals(list.toLowerCase(),scoreBuggedImpl.toString().toLowerCase());
 	}
 	
 	
