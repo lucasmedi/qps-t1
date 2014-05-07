@@ -17,16 +17,40 @@ public class ScoreTest {
 	}
 	
 	@Test
+	public void testNumElementsEmptyList(){
+		int numElements = 0;
+		
+		Assert.assertEquals(numElements, scoreBuggedImpl.getNumElements());
+	}
+	
+	@Test
 	public void testNumElements(){
-		GameEntry gameEntry1 = new GameEntry("user1", 400);
-		GameEntry gameEntry2 = new GameEntry("user2", 200);
-		GameEntry gameEntry3 = new GameEntry("user3", 500);
+		GameEntry gameEntry1 = new GameEntry("John", 10);
+		GameEntry gameEntry2 = new GameEntry("Carol", 5);
+				
+		scoreBuggedImpl.add(gameEntry1);
+		scoreBuggedImpl.add(gameEntry2);
+		
+		int numElements = 2;
+		
+		Assert.assertEquals(numElements, scoreBuggedImpl.getNumElements());
+	}
+	
+	@Test
+	public void testNumElementsFullList(){
+		GameEntry gameEntry1 = new GameEntry("John", 10);
+		GameEntry gameEntry2 = new GameEntry("Carol", 5);
+		GameEntry gameEntry3 = new GameEntry("Giovanni", 11);
+		GameEntry gameEntry4 = new GameEntry("Lucas", 10);
+		GameEntry gameEntry5 = new GameEntry("Frodo", 3);
 		
 		scoreBuggedImpl.add(gameEntry1);
 		scoreBuggedImpl.add(gameEntry2);
 		scoreBuggedImpl.add(gameEntry3);
+		scoreBuggedImpl.add(gameEntry4);
+		scoreBuggedImpl.add(gameEntry5);
 		
-		int numElements = 3;
+		int numElements = 5;
 		
 		Assert.assertEquals(numElements, scoreBuggedImpl.getNumElements());
 	}
@@ -39,7 +63,7 @@ public class ScoreTest {
 	}
 	
 	@Test 
-	public void testAddScoresListIsEmpty(){
+	public void testAddScoresEmptyList(){
 		GameEntry gameEntry1 = new GameEntry("João", 5);
 		
 		Assert.assertTrue(scoreBuggedImpl.add(gameEntry1));
@@ -149,5 +173,19 @@ public class ScoreTest {
 		
 		Assert.assertTrue(gameEntry.getName().equalsIgnoreCase(gameEntry5.getName()));
 	}
+	
+	@Test
+	public void testToString(){
+		GameEntry gameEntry1 = new GameEntry("John", 10);
+		GameEntry gameEntry2 = new GameEntry("Carol", 5);
+		
+		scoreBuggedImpl.add(gameEntry1);
+		scoreBuggedImpl.add(gameEntry2);
+	
+		String list = "["+gameEntry1.toString()+", " + gameEntry2.toString()+"]";
+		
+		Assert.assertTrue(list.equalsIgnoreCase(scoreBuggedImpl.toString()));
+	}
+	
 	
 }
