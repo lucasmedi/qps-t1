@@ -39,76 +39,24 @@ public class ScoreTest {
 	}
 	
 	@Test 
-	public void testScoresListIsNotNull(){
-		GameEntry gameEntry1 = new GameEntry("user1", 400);
-		scoreBuggedImpl.add(gameEntry1);
+	public void testAddScoresListIsEmpty(){
+		GameEntry gameEntry1 = new GameEntry("João", 5);
 		
-		Assert.assertNotNull(scoreBuggedImpl.toString());
+		Assert.assertTrue(scoreBuggedImpl.add(gameEntry1));
 	}
 	
 	@Test 
-	public void testHighScoreList(){
-		GameEntry gameEntry1 = new GameEntry("user1", 400);
-		GameEntry gameEntry2 = new GameEntry("user2", 200);
-		GameEntry gameEntry3 = new GameEntry("user3", 500);
-		
-		scoreBuggedImpl.add(gameEntry1);
-		scoreBuggedImpl.add(gameEntry2);
-		scoreBuggedImpl.add(gameEntry3);
-		
-		String scores = scoreBuggedImpl.toString();
-		
-		String[] scoresList = scores.split(",");
-		
-		Assert.assertEquals(scoresList[0], gameEntry3.toString());
-	}
-	
-	@Test 
-	public void testLowScoreList(){
-		GameEntry gameEntry1 = new GameEntry("user1", 400);
-		GameEntry gameEntry2 = new GameEntry("user2", 200);
-		GameEntry gameEntry3 = new GameEntry("user3", 500);
-		
-		scoreBuggedImpl.add(gameEntry1);
-		scoreBuggedImpl.add(gameEntry2);
-		scoreBuggedImpl.add(gameEntry3);
-		
-		String scores = scoreBuggedImpl.toString();
-		
-		String[] scoresList = scores.split(",");
-		
-		Assert.assertEquals(scoresList[2], gameEntry2.toString());
-	}
-	
-	@Test 
-	public void testAddScoreFullScoreList(){
-		GameEntry gameEntry1 = new GameEntry("user1", 400);
-		GameEntry gameEntry2 = new GameEntry("user2", 200);
-		GameEntry gameEntry3 = new GameEntry("user3", 500);
-		GameEntry gameEntry4 = new GameEntry("user4", 100);
-		GameEntry gameEntry5 = new GameEntry("user5", 900);
-		
-		scoreBuggedImpl.add(gameEntry1);
-		scoreBuggedImpl.add(gameEntry2);
-		scoreBuggedImpl.add(gameEntry3);
-		scoreBuggedImpl.add(gameEntry4);
-		scoreBuggedImpl.add(gameEntry5);
-		
-		GameEntry gameEntry6 = new GameEntry("user6", 600);
-		scoreBuggedImpl.add(gameEntry5);
-		
-		String scores = scoreBuggedImpl.toString();
-		
-		Assert.assertTrue(scores.contains("user6"));
+	public void testAddNull(){
+		Assert.assertFalse(scoreBuggedImpl.add(null));
 	}
 
 	@Test 
-	public void testNotAddedScoreFullScoreList(){
-		GameEntry gameEntry1 = new GameEntry("user1", 400);
-		GameEntry gameEntry2 = new GameEntry("user2", 200);
-		GameEntry gameEntry3 = new GameEntry("user3", 500);
-		GameEntry gameEntry4 = new GameEntry("user4", 100);
-		GameEntry gameEntry5 = new GameEntry("user5", 900);
+	public void testNotAddedScoreFullList(){
+		GameEntry gameEntry1 = new GameEntry("John", 10);
+		GameEntry gameEntry2 = new GameEntry("Carol", 5);
+		GameEntry gameEntry3 = new GameEntry("Giovanni", 11);
+		GameEntry gameEntry4 = new GameEntry("Lucas", 10);
+		GameEntry gameEntry5 = new GameEntry("Frodo", 3);
 		
 		scoreBuggedImpl.add(gameEntry1);
 		scoreBuggedImpl.add(gameEntry2);
@@ -116,12 +64,28 @@ public class ScoreTest {
 		scoreBuggedImpl.add(gameEntry4);
 		scoreBuggedImpl.add(gameEntry5);
 		
-		GameEntry gameEntry6 = new GameEntry("user6", 50);
+		GameEntry gameEntry6 = new GameEntry("Peter", 1);
+		
+		Assert.assertFalse(scoreBuggedImpl.add(gameEntry6));
+	}
+	
+	@Test 
+	public void testAddedScoreFullList(){
+		GameEntry gameEntry1 = new GameEntry("John", 10);
+		GameEntry gameEntry2 = new GameEntry("Carol", 5);
+		GameEntry gameEntry3 = new GameEntry("Giovanni", 11);
+		GameEntry gameEntry4 = new GameEntry("Lucas", 10);
+		GameEntry gameEntry5 = new GameEntry("Frodo", 3);
+		
+		scoreBuggedImpl.add(gameEntry1);
+		scoreBuggedImpl.add(gameEntry2);
+		scoreBuggedImpl.add(gameEntry3);
+		scoreBuggedImpl.add(gameEntry4);
 		scoreBuggedImpl.add(gameEntry5);
 		
-		String scores = scoreBuggedImpl.toString();
+		GameEntry gameEntry6 = new GameEntry("Homer", 20);
 		
-		Assert.assertFalse(scores.contains("user6"));
+		Assert.assertTrue(scoreBuggedImpl.add(gameEntry6));
 	}
 	
 	@Test(expected = IndexOutOfBoundsException.class)
