@@ -1,6 +1,6 @@
 package tests.highScores;
 
-import highScores.GameEntry;
+import highScores.modified.GameEntry;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,26 +18,26 @@ public class GameEntryTest {
 	 * 
 	 * */
 	@Test(expected= Exception.class)
-	public void testNameSizeEqualZeroLI(){
+	public void testNameSizeEqualZeroLI() throws Exception{
 		GameEntry gameEntry = new GameEntry("", 100);
 	}
 	
 	@Test
-	public void testNameSizeEqualOneLI(){
+	public void testNameSizeEqualOneLI() throws Exception{
 		GameEntry gameEntry = new GameEntry("a", 100);
 		
 		Assert.assertTrue(gameEntry.getName().length() > 0);
 	}
 	
 	@Test
-	public void testNameSizeEqualTwoLI(){
+	public void testNameSizeEqualTwoLI() throws Exception{
 		GameEntry gameEntry = new GameEntry("ab", 100);
 		
 		Assert.assertTrue(gameEntry.getName().length() > 0);
 	}
 	
 	@Test
-	public void testNameLS(){
+	public void testNameLS() throws Exception{
 		GameEntry gameEntry = new GameEntry("user567891234567891", 1000);
 		
 		Integer length = gameEntry.getName().length();
@@ -46,7 +46,7 @@ public class GameEntryTest {
 	}
 	
 	@Test
-	public void testNameLimitLS(){
+	public void testNameLimitLS() throws Exception{
 		GameEntry gameEntry = new GameEntry("user5678912345678912", 1000);
 		
 		Integer length = gameEntry.getName().length();
@@ -55,7 +55,7 @@ public class GameEntryTest {
 	}
 	
 	@Test(expected = Exception.class)
-	public void testGreatNameLS(){
+	public void testGreatNameLS() throws Exception{
 		GameEntry gameEntry = new GameEntry("user56789123456789123", 100);
 		
 	}
@@ -71,12 +71,13 @@ public class GameEntryTest {
 	 * */
 	 
 	@Test(expected= Exception.class)
-	public void testNegativeScoreLI(){
-		GameEntry gameEntry = new GameEntry("user1", -1);
+	public void testNegativeScoreLI() throws Exception{
+		int score = -1;
+		GameEntry gameEntry = new GameEntry("user1", score);
 	}
 	
 	@Test
-	public void testGetScoreZeroLI(){
+	public void testGetScoreZeroLI() throws Exception{
 		int score = 0;
 		GameEntry gameEntry = new GameEntry("User1", score);
 		
@@ -84,31 +85,31 @@ public class GameEntryTest {
 	}
 	
 	@Test
-	public void testScoreLI(){
+	public void testScoreLI() throws Exception{
 		int score = 1;
 		GameEntry gameEntry = new GameEntry("User1", score);
  
-		Assert.assertTrue(gameEntry.getScore() > 0 && gameEntry.getScore() <= 1000);
+		Assert.assertTrue(gameEntry.getScore() >= 0 && gameEntry.getScore() <= 1000);
 	}
 
 	@Test
-	public void testScoreLS(){
+	public void testScoreLS() throws Exception{
 		int score = 999;
 		GameEntry gameEntry = new GameEntry("user1", 999);
 		
-		Assert.assertTrue(gameEntry.getScore() <= 1000);
+		Assert.assertTrue(gameEntry.getScore() >= 0 && gameEntry.getScore() <= 1000);
 	}
 	
 	@Test
-	public void testMaxScoreLS(){
+	public void testMaxScoreLS() throws Exception{
 		int score = 999;
 		GameEntry gameEntry = new GameEntry("user1", 1000);
 		
-		Assert.assertTrue(gameEntry.getScore() <= 1000);
+		Assert.assertTrue(gameEntry.getScore() > 0 && gameEntry.getScore() <= 1000);
 	}
 	
 	@Test(expected= Exception.class)
-	public void testGreaterThanMaxScoreLS(){
+	public void testGreaterThanMaxScoreLS() throws Exception{
 		GameEntry gameEntry = new GameEntry("user1", 1001);
 	}
 	
@@ -122,16 +123,24 @@ public class GameEntryTest {
 	 * 
 	 * 
 	 * */
+	
 	@Test
-	public void testGetName(){
+	public void testGetName() throws Exception{
 		String name = "Frodo";
 		GameEntry gameEntry = new GameEntry(name, 10);
 		
 		Assert.assertTrue(name.equalsIgnoreCase(gameEntry.getName()));
 	}
+	@Test
+	public void testGetScore() throws Exception{
+		int score = 5;
+		GameEntry gameEntry = new GameEntry("Frodo", 5);
+		
+		Assert.assertEquals(score, gameEntry.getScore());;
+	}
 	
 	@Test
-	public void testToString(){
+	public void testToString() throws Exception{
 		GameEntry gameEntry = new GameEntry("Nome1", 3);
 		String resultExpected = "(Nome1, 3)";
 		

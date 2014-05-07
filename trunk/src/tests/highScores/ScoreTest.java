@@ -1,7 +1,7 @@
 package tests.highScores;
 
-import highScores.GameEntry;
-import highScores.ScoresBuggedImpl;
+import highScores.modified.GameEntry;
+import highScores.modified.ScoresBuggedImpl;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,7 +33,7 @@ public class ScoreTest {
 	}
 	
 	@Test
-	public void testNumElements(){
+	public void testNumElements() throws Exception{
 		GameEntry gameEntry1 = new GameEntry("John", 10);
 		GameEntry gameEntry2 = new GameEntry("Carol", 5);
 				
@@ -47,7 +47,7 @@ public class ScoreTest {
 	
 	
 	@Test
-	public void testNumElementsFullList(){
+	public void testNumElementsFullList() throws Exception{
 		GameEntry gameEntry1 = new GameEntry("John", 10);
 		GameEntry gameEntry2 = new GameEntry("Carol", 5);
 		GameEntry gameEntry3 = new GameEntry("Giovanni", 11);
@@ -93,7 +93,7 @@ public class ScoreTest {
 	 * 
 	 * */
 	@Test 
-	public void testAddScoresEmptyList(){
+	public void testAddScoresEmptyList() throws Exception{
 		GameEntry gameEntry1 = new GameEntry("João", 5);
 		
 		Assert.assertTrue(scoreBuggedImpl.add(gameEntry1));
@@ -105,7 +105,7 @@ public class ScoreTest {
 	}
 	
 	@Test 
-	public void testAddScore(){
+	public void testAddScore() throws Exception{
 		GameEntry gameEntry1 = new GameEntry("John", 10);
 		GameEntry gameEntry2 = new GameEntry("Carol", 5);
 		GameEntry gameEntry3 = new GameEntry("Giovanni", 11);
@@ -122,7 +122,7 @@ public class ScoreTest {
 	}
 
 	@Test 
-	public void testNotAddedScoreFullList(){
+	public void testNotAddedScoreFullList() throws Exception{
 		GameEntry gameEntry1 = new GameEntry("John", 10);
 		GameEntry gameEntry2 = new GameEntry("Carol", 5);
 		GameEntry gameEntry3 = new GameEntry("Giovanni", 11);
@@ -141,7 +141,7 @@ public class ScoreTest {
 	}
 	
 	@Test 
-	public void testAddedScoreFullList(){
+	public void testAddedScoreFullList() throws Exception{
 		GameEntry gameEntry1 = new GameEntry("John", 10);
 		GameEntry gameEntry2 = new GameEntry("Carol", 5);
 		GameEntry gameEntry3 = new GameEntry("Giovanni", 11);
@@ -169,7 +169,7 @@ public class ScoreTest {
 	 * 
 	 * */
 	@Test(expected = IndexOutOfBoundsException.class)
-	public void testRemoveNegativeIndex(){
+	public void testRemoveNegativeIndex() throws Exception{
 		//[(John, 10), (Carol, 5), (Dan, 3), (Giovanni, 2), (Lucas, 1)]
 		GameEntry gameEntry1 = new GameEntry("John", 10);
 		GameEntry gameEntry2 = new GameEntry("Carol", 5);
@@ -189,7 +189,7 @@ public class ScoreTest {
 	}
 	
 	@Test(expected = IndexOutOfBoundsException.class)
-	public void testRemoveGreaterThanListIndex(){
+	public void testRemoveGreaterThanListIndex() throws Exception{
 		//[(John, 10), (Carol, 5), (Dan, 3), (Giovanni, 2), (Lucas, 1)]
 		GameEntry gameEntry1 = new GameEntry("John", 10);
 		GameEntry gameEntry2 = new GameEntry("Carol", 5);
@@ -209,7 +209,7 @@ public class ScoreTest {
 	}
 	
 	@Test
-	public void testRemove(){
+	public void testRemove() throws Exception{
 		//[(John, 10), (Carol, 5), (Dan, 3), (Giovanni, 2), (Lucas, 1)]
 		GameEntry gameEntry1 = new GameEntry("John", 10);
 		GameEntry gameEntry2 = new GameEntry("Carol", 5);
@@ -241,7 +241,7 @@ public class ScoreTest {
 	 * 
 	 * */
 	@Test
-	public void testToString(){
+	public void testToString() throws Exception{
 		GameEntry gameEntry1 = new GameEntry("John", 10);
 		GameEntry gameEntry2 = new GameEntry("Carol", 5);
 		
