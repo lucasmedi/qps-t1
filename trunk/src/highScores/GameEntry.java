@@ -6,7 +6,8 @@ public class GameEntry {
 
 	protected int score; // the score value
 
-	/** Constructor to create a game entry */
+	/** Constructor to create a game entry 
+	 * @throws Exception */
 	public GameEntry(String n, int s) {
 		name = n;
 		s = score;		
