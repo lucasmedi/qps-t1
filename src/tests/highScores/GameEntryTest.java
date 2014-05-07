@@ -10,21 +10,29 @@ public class GameEntryTest {
 	
 	//Test Name
 	@Test
-	public void testNameSizeEqualZero(){
+	public void testNameSizeEqualZeroLI(){
 		GameEntry gameEntry = new GameEntry("", 100);
+		
+		//Assert.assertTrue(gameEntry.getName().length() > 0);
+		Assert.fail();
+	}
+	
+	@Test
+	public void testNameSizeEqualOneLI(){
+		GameEntry gameEntry = new GameEntry("a", 100);
 		
 		Assert.assertTrue(gameEntry.getName().length() > 0);
 	}
 	
 	@Test
-	public void testGreatName(){
-		GameEntry gameEntry = new GameEntry("user56789123456789101", 100);
+	public void testNameSizeEqualTwoLI(){
+		GameEntry gameEntry = new GameEntry("ab", 100);
 		
-		Assert.assertTrue(gameEntry.getName().length() < 20);
+		Assert.assertTrue(gameEntry.getName().length() > 0);
 	}
 	
 	@Test
-	public void testName(){
+	public void testNameLS(){
 		GameEntry gameEntry = new GameEntry("user1", 100);
 		
 		Integer length = gameEntry.getName().length();
@@ -32,26 +40,32 @@ public class GameEntryTest {
 		Assert.assertTrue(length > 0 && length < 20);
 	}
 	
-	//Test Score
 	@Test
-	public void testMaxScore(){
-		GameEntry gameEntry = new GameEntry("user1", 1001);
-
-		Assert.assertTrue(gameEntry.getScore() <= 1000);
-	}
+	public void testGreatNameLS(){
+		GameEntry gameEntry = new GameEntry("user56789123456789101", 100);
 	
+		Assert.fail();
+	}
+	//Test Score
 	@Test
 	public void testNegativeScore(){
 		GameEntry gameEntry = new GameEntry("user1", -1);
-
-		Assert.assertTrue(gameEntry.getScore() > 0);
+		
+		Assert.fail();
 	}
-	
+
 	@Test
 	public void testScore(){
 		GameEntry gameEntry = new GameEntry("user1", 10);
  
 		Assert.assertTrue(gameEntry.getScore() > 0 && gameEntry.getScore() <= 1000);
+	}
+	
+	@Test
+	public void testMaxScore(){
+		GameEntry gameEntry = new GameEntry("user1", 1001);
+		
+		Assert.assertTrue(gameEntry.getScore() <= 1000);
 	}
 	
 	@Test
