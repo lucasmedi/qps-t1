@@ -38,6 +38,7 @@ public class ScoresBuggedImpl implements Scores {
 		} else
 			// the array is not full
 			numEntries++;
+		
 		// Locate the place that the new (high score) entry e belongs
 		int i = numEntries-1;
 		for (; (i >= 1) && (newScore > entries[i - 1].getScore()); i--)
